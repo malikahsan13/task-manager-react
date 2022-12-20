@@ -45,10 +45,18 @@ function App() {
     setTasks(tasks.map((task) => task.id === id ? {...task, reminder: !taskToToggle.reminder} : task));
   }
 
+  const deleteTask = async (id) => {
+    const res = await fetch(`http://localhost:5000/tasks/${id}`,
+    {
+      method: "DELETE"
+    });
+    setTasks(tasks.filter((task) => task.id!==id))
+  }
+
   return (
     <div className="App">
       <AddTask onAdd={onAdd} />
-      <Tasks tasks={tasks} onUpdReminder={onUpdReminder} />
+      <Tasks tasks={tasks} onUpdReminder={onUpdReminder} deleteTask={deleteTask} />
     </div>
   );
 }
