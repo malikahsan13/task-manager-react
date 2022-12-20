@@ -4,7 +4,7 @@
       "id": 1,
       "text": "Buy Grocerry",
       "dateTime": "21 April, 2021 12:20:45",
-      "reminder": true
+      "reminder": false
     },
     {
       "id": 2,

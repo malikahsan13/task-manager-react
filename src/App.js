@@ -31,10 +31,24 @@ function App() {
       setTasks([...tasks, data]);
   }
 
+  const onUpdReminder = async (id) => {
+    const res = await fetch(`http://localhost:5000/tasks/${id}`);
+    const taskToToggle = await res.json();
+    const updTask = {...taskToToggle, reminder: !taskToToggle.reminder};
+    const res1 = await fetch(`http://localhost:5000/tasks/${id}`,{
+      method: "PUT",
+      headers: {
+        "Content-Type" : "application/json"
+      },
+      body: JSON.stringify(updTask)
+    });
+    setTasks(tasks.map((task) => task.id === id ? {...task, reminder: !taskToToggle.reminder} : task));
+  }
+
   return (
     <div className="App">
       <AddTask onAdd={onAdd} />
-      <Tasks tasks={tasks} />
+      <Tasks tasks={tasks} onUpdReminder={onUpdReminder} />
     </div>
   );
 }
