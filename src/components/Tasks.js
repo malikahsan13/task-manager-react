@@ -2,7 +2,6 @@ import React from 'react'
 import Task from "./Task"
 
 const Tasks = ({tasks}) => {
-  console.log(tasks)
   return (
     <div>
       {
