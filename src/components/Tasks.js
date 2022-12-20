@@ -1,9 +1,15 @@
 import React from 'react'
+import Task from "./Task"
 
-const Tasks = () => {
+const Tasks = ({tasks}) => {
+  console.log(tasks)
   return (
     <div>
-      <p>Tasks</p>
+      {
+        tasks.map((task)=> {
+          return <Task key={task.id} task={task} />
+        })
+      }
     </div>
   )
 }
