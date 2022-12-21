@@ -16,3 +16,5 @@ npm run server
 ### To build for production
 
 npm run build
+
+![image](https://user-images.githubusercontent.com/44003944/208863326-7d17edbb-161c-4045-9e52-299e518eb96c.png)
