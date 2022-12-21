@@ -74,7 +74,7 @@ function App() {
           <Route path="/" element={
             <>
               {showAddTask && <AddTask onAdd={onAdd} />}
-              {tasks.length === 0 ? (
+              {tasks.length !== 0 ? (
               <Tasks
                 tasks={tasks}
                 onUpdReminder={onUpdReminder}
