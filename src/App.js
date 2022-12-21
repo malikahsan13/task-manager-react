@@ -1,8 +1,10 @@
 import React, {useState, useEffect} from "react"
 import AddTask from "./components/AddTask";
+import Header from "./components/Header";
 import Tasks from "./components/Tasks"
 
 function App() {
+  const [showAddTask, setShowAddTask] = useState(false)
   const [tasks, setTasks] = useState([]);
 
   useEffect(()=>{
@@ -35,7 +37,7 @@ function App() {
     const res = await fetch(`http://localhost:5000/tasks/${id}`);
     const taskToToggle = await res.json();
     const updTask = {...taskToToggle, reminder: !taskToToggle.reminder};
-    const res1 = await fetch(`http://localhost:5000/tasks/${id}`,{
+    await fetch(`http://localhost:5000/tasks/${id}`,{
       method: "PUT",
       headers: {
         "Content-Type" : "application/json"
@@ -46,7 +48,7 @@ function App() {
   }
 
   const deleteTask = async (id) => {
-    const res = await fetch(`http://localhost:5000/tasks/${id}`,
+    await fetch(`http://localhost:5000/tasks/${id}`,
     {
       method: "DELETE"
     });
@@ -54,8 +56,9 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <AddTask onAdd={onAdd} />
+    <div className='container'>
+      <Header onAdd={() => { setShowAddTask(!showAddTask) }} showAdd={showAddTask} />
+      {showAddTask && <AddTask onAdd={onAdd} />}
       <Tasks tasks={tasks} onUpdReminder={onUpdReminder} deleteTask={deleteTask} />
     </div>
   );
